@@ -1,36 +1,56 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
-const InputHandler = ({ onSubmit, editMode,editing ,onEdit,setEditMode}) => {
+const InputHandler = ({ onSubmit, editMode, editing, onEdit, setEditMode }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-
-  useEffect(()=>{
+  const emailInput = useRef(null);
+  useEffect(() => {
     if (editMode) {
       setEmail(editing.email);
       setName(editing.name);
     }
-    else{
+    else {
       setEmail("")
       setName("")
     }
-  },[editMode])
+  }, [editMode])
+
+  const validateEmail = (email) => {
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (regex.test(email)) {
+      emailInput.current.style.borderColor = "green";
+      return true;
+    }
+    if (!regex.test(email)) {
+      emailInput.current.style.borderColor = "red";
+      return false;
+    }
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!name || !email) return;  
-    if(editMode){
-      onEdit({name,email, id: editing.id});
+    if (!name || !email) {
+      alert("input email and name cannot be empty !!")
+      return;
+    };
+    const isvalidMail = validateEmail(email)
+    if (editMode && isvalidMail) {
+      onEdit({ name, email, id: editing.id });
       setEmail("");
       setName("");
       setEditMode(!editMode);
+      emailInput.current.style.borderColor = "#ccc";
     }
-    onSubmit({ name, email });
-    setEmail("");
-    setName("");
+    else if (isvalidMail) {
+      onSubmit({ name, email });
+      setEmail("");
+      setName("");
+      emailInput.current.style.borderColor = "#ccc";
+    }
   };
 
   return (
-    <div className="header-box">
+    <form className="header-box">
       <input
         type="text"
         placeholder="Name"
@@ -38,19 +58,22 @@ const InputHandler = ({ onSubmit, editMode,editing ,onEdit,setEditMode}) => {
         onChange={(e) => {
           setName(e.target.value);
         }}
+        required
       />
       <input
         type="text"
         placeholder="Email"
+        ref={emailInput}
         value={email}
         onChange={(e) => {
           setEmail(e.target.value);
         }}
+        required
       />
       <button type="primary" onClick={handleSubmit}>
         {editMode ? "Edit user" : "Add user"}
       </button>
-    </div>
+    </form>
   );
 };
 

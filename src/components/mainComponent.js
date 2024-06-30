@@ -12,7 +12,10 @@ function MainComponent(props) {
   };
 
   const handleDelete = (id)=>{
-    deleteUser(id);
+    const permission = confirm("Are you sure you want to delete ?");
+    if(permission){
+      deleteUser(id);
+    }
   }
   
   const handleEdit = (payload)=>{
