@@ -34,7 +34,7 @@
 	- [✔] Ensure that both the name and email fields are not left empty and contain valid values before submission.
 	- [✔] Implement validation for the email field to ensure that only valid email addresses are accepted.
 
-![image](https://github.com/impressai/frontend_task/assets/28563570/27ae4e34-0ccb-488f-9215-e95842322b97)
+![image](https://firebasestorage.googleapis.com/v0/b/fir-tutorial-1-2e338.appspot.com/o/IMG-20240630-WA0017.jpg?alt=media&token=03860198-59b4-4c46-9620-9407754936e8)
 
 
 
@@ -65,7 +65,7 @@
 - Add edit functionality:
 	- [✔] Edit for Each User: Implement a edit feature for each user entry
 
-![image](https://firebasestorage.googleapis.com/v0/b/fir-tutorial-1-2e338.appspot.com/o/IMG-20240630-WA0017.jpg?alt=media&token=03860198-59b4-4c46-9620-9407754936e8)
+![image](https://github.com/impressai/frontend_task/assets/28563570/67fd80fc-c022-41b3-8f01-de11de046379)
 
 
 
